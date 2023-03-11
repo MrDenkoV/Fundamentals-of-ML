@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Etap 1 - Dane</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 align=center>Raport z KNN</h1>
+<h2 align=center>Stanisław Denkowski 305288</h2>
+<h3 id="etap-1---dane">Etap 1 - Dane</h3>
+<p>Wygenerowane dane, starałem się by spełniały wszystkie wymagania:</p>
+<p><img src="file:////Users/denkov/Uni/pum/data.png" alt="data"></p>
+<ul>
+<li>są 4 klasy</li>
+<li>klasy są wymieszane i są róne wyspy wewnątrz innych klas</li>
+<li>gęstość obserwacji jest nierówna</li>
+<li>kształ całego zbioru jest nierówny</li>
+</ul>
+<h3 id="etap-2---zobaczmy-przebieg-granicy-decyzyjnej">Etap 2 - Zobaczmy przebieg granicy decyzyjnej</h3>
+<ol>
+<li>Wersja pierwsza:
+<ul>
+<li>k=1, głosowanie większościowe i metryka Euklidesa
+<img src="file:////Users/denkov/Uni/pum/version1.png" alt="version1"></li>
+<li>k=13, głosowanie większościowe i metryka Euklidesa
+<img src="file:////Users/denkov/Uni/pum/version2.png" alt="version2"></li>
+<li>k=1, głosowanie większościowe i metryka Mahalanobisa
+<img src="file:////Users/denkov/Uni/pum/version3.png" alt="version3"></li>
+<li>k=9, głosowanie ważone odwrotnie do odległości i metryka Euklidesa
+<img src="file:////Users/denkov/Uni/pum/version4.png" alt="version4"></li>
+</ul>
+</li>
+</ol>
+<h3 id="etap-3---ocena-wairantów">Etap 3 - Ocena wairantów</h3>
+<ul>
+<li>Wydaje mi się, że w naszym przypadku metryka Mahaalanobisa jest przekombinowana. Jasne jest, że k=1 będzie przeuczać (overfitting), pozostały więc dwie opcje. Podejrzewam, że głosowanie ważone odwrotnie do odległości ma więcej sensu, niż głosowanie większościow. Oznacza to, że <strong>moim zdaniem najlepiej zadziała wersja czwarta</strong>.</li>
+</ul>
+<p>Testy(wszystkie testy wykonane na takich danych - 200 punktów, 10 powtórzeń w obu przypadkach gdy chcemy wyznaczyć średnią skuteczność):</p>
+<ol>
+<li>
+<p>Wersja pierwsza i druga (różnią się tylko k, które i tak jest zmienne w naszym badaniu) - Najlepsza średnia skuteczność 85%, odchylenie standardowe 5%, dla k=14.</p>
+</li>
+<li>
+<p>Wersja trzecia  - Najlepsza średnia skuteczność 82%, odchylenie standardowe 3%, dla k=20</p>
+</li>
+<li>
+<p>Wersja czwarta  - Najlepsza średnia skuteczność 75%, odchylenie standardowe 7%, dla k=5</p>
+</li>
+</ol>
+<p><strong>W praktyce najlepsza jest wersja druga (na testach pierwsza i druga się scaliły), co jest dla mnie bardzo zaskakujące wersja czwarta wypadła najgorzej.</strong></p>
+<p>Odchylenia standardowe są mniej więcej o rząd wielkości mniejsze. od prawie 10% dla wersji 4, do około 4% dla wersji trzeciej.</p>
+
+    </body>
+    </html>
